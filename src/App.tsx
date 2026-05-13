@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, HashRouter } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
 import { HomePage } from './pages/HomePage';
 import { PeoplePage } from './pages/PeoplePage';
@@ -9,21 +9,23 @@ import './App.scss';
 export const App = () => {
   return (
     <div data-cy="app">
-      <Navbar />
+      <HashRouter>
+        <Navbar />
 
-      <main className="section">
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
+        <main className="section">
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
 
-            <Route path="/home" element={<Navigate to="/" replace />} />
+              <Route path="/home" element={<Navigate to="/" replace />} />
 
-            <Route path="/people/:slug?" element={<PeoplePage />} />
+              <Route path="/people/:slug?" element={<PeoplePage />} />
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </div>
-      </main>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </div>
+        </main>
+      </HashRouter>
     </div>
   );
 };
